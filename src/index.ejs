@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>AppSmart Office</title>
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -32,7 +32,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+         "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
       }
     }
   </script>
@@ -45,7 +47,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@appdirect/root-config": "//localhost:9000/appdirect-root-config.js"
+       "@appdirect/root-config": "//localhost:9000/appdirect-root-config.js",
+      "@appdirect/react-app": "//localhost:8080/appdirect-react-app.js",
+      "angular-app": "//localhost:4200/main.js"
       }
     }
   </script>
@@ -67,10 +71,57 @@
   <% } %>
 </head>
 <body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  <main></main>
+  <style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111D4A;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  height: 100%;
+}
+
+.navbar li {
+  padding-right: 24px;
+  height: 100%;
+}
+
+.navbar li:hover {
+  opacity: 0.8;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+</style>
+<div class="navbar">
+<ul>
+  <a onclick="singleSpaNavigate('/react')">
+    <li>
+      React
+    </li>
+  </a>
+  <a onclick="singleSpaNavigate('/angular')">
+    <li>
+      Angular
+    </li>
+  </a>
+</ul>
+</div>
+
   <script>
     System.import('@appdirect/root-config');
   </script>
